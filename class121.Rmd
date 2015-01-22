@@ -1,0 +1,32 @@
+---
+Title: Classwork 12/1 
+---
+Author: Taylor King
+---
+
+
+```{r}
+my.sample <- rnorm(200,36, 8)
+print(my.sample)
+hist(my.sample)
+print(sample.mean <- mean(my.sample))
+print(sample.sd <- sd(my.sample))
+boxplot(my.sample, horizontal=T)
+qqnorm(my.sample)
+qqline(my.sample)
+
+b<- 10^5
+my.boot<-numeric(b)
+
+for (i in 1:b)
+{
+  x<-sample(my.sample,20 ,replace = T)
+    my.boot[i] <- mean(x)
+}
+hist(my.boot)
+boxplot(my.boot)
+qqnorm(my.boot)
+qqline(my.boot)
+mean(my.boot)
+sd(my.boot)
+```

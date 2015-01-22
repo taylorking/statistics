@@ -1,0 +1,5 @@
+AuthUserFile /u/css/kingtb/.htpasswd
+AuthType Basic
+AuthName "Private Statistics Crap"
+Options +Indexes
+Require valid-user

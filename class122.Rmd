@@ -1,0 +1,48 @@
+---
+Title: Class Work 12/2
+Author: Taylor King
+---
+
+Today we are going to talk about an idea called bias.          
+```{r}
+my.data <- read.csv(file=url("http://www1.appstate.edu/~thomleyje/data-files/BookPrices.csv"))
+
+hard<-subset(my.data, Area=='Math & Science')
+social<-subset(my.data, Area=='Social Sciences')
+
+print(hard.mean<-mean(hard$Price))
+print(hard.sd<- sd(hard$Price))
+print(social.mean<-mean(social$Price))
+print(social.sd <- sd(social$Price))
+boxplot(hard$Price)
+boxplot(social$Price)
+
+
+qqnorm(hard$Price)
+qqline(hard$Price)
+
+qqnorm(social$Price)
+qqline(social$Price)
+
+mean(hard$Price) - mean(social$Price)
+obs.stat<- max(hard$Price) - max(social$Price)
+B<- 10^ 5
+my.boot <- numeric(B)
+for( i in 1:B)
+{
+  xhs<-sample(hard$Price, 27, replace=T )
+  xss<-sample(social$Price, 17, replace=T)
+  my.boot[i] <- mean(xhs) - mean(xss)
+}
+
+hist(my.boot)
+mean(my.boot)
+sd(my.boot)
+mean(c(mean(xss), mean(xhs)))
+bias <- mean(my.boot) - obs.stat
+rel.bias <- (bias / sd(my.boot))*100
+rel.bias
+quantile(my.boot,c(.025, .0975))
+```
+
+
